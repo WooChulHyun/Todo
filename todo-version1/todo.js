@@ -12,20 +12,9 @@ function generateId() {
   return todos.length ? Math.max(...todos.map(todo => todo.id)) + 1 : 1;
 }
 
-function completedCounter() {
-  let count = 0;
-  todos.forEach(item => (item.completed ? (count += 1) : (count += 0)));
-  return count;
-}
-
-function itemsLeft() {
-  let count = 0;
-  todos.forEach(item => (!item.completed ? (count += 1) : (count += 0)));
-  return count;
-}
-
 function render() {
   let html = '';
+  let completedCount = 0;
   todos.forEach((item) => {
     html += `<li id="${item.id}" class="todo-item">
    <input class="custom-checkbox" type="checkbox" id="ck-${item.id}" ${
@@ -34,13 +23,13 @@ function render() {
    <label for="ck-${item.id}">${item.content}</label>
    <i class="remove-todo far fa-times-circle"></i>
  </li>\n`;
+    if (item.completed) completedCount += 1;
   });
   $todos.innerHTML = html;
-  document.querySelector('.completed-todos').innerHTML = completedCounter();
-  document.querySelector('.active-todos').innerHTML = itemsLeft();
-}
 
-render();
+  document.querySelector('.completed-todos').innerHTML = completedCount;
+  document.querySelector('.active-todos').innerHTML =        todos.length - completedCount;
+}
 
 $todos.onchange = function (e) {
   const id = +e.target.parentNode.id;
@@ -69,11 +58,7 @@ $inputTodo.onkeyup = function (e) {
 };
 
 $customCheckbox.onchange = function (e) {
-  if (e.target.checked) {
-    todos = todos.map(todo => Object.assign({}, todo, { completed: true }));
-  } else {
-    todos = todos.map(todo => Object.assign({}, todo, { completed: false }));
-  }
+  todos = todos.map(todo => Object.assign({}, todo, { completed: e.target.checked }));
   render();
 };
 
@@ -81,3 +66,5 @@ $deleteBtn.onclick = function (e) {
   todos = todos.filter(item => !item.completed);
   render();
 };
+
+render();

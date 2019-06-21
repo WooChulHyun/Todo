@@ -10,21 +10,21 @@
     #input
   />
   <ul class="nav">
-    <li id="all" [class.active]="state === 'All'" (click)="allClick()">All</li>
-    <li id="active" [class.active]="state === 'Active'" (click)="activeClick()">
-      Active
-    </li>
     <li
-      id="completed"
-      [class.active]="state === 'Completed'"
-      (click)="completedClick()"
+      *ngFor="let state of states"
+      [class.active]="currentState === state"
+      (click)="currentState = state"
     >
-      Completed
+      {{ state }}
     </li>
   </ul>
 
   <ul class="todos">
-    <li id="myId" class="todo-item" *ngFor="let todo of Todo">
+    <li
+      id="myId"
+      class="todo-item"
+      *ngFor="let todo of todos | todoFilter: currentState"
+    >
       <input
         class="custom-checkbox"
         type="checkbox"

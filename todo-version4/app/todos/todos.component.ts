@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Todos } from '../todos';
+import { navItem } from '../navItem.type';
 
 @Component({
   selector: 'app-todos',
@@ -13,7 +14,8 @@ export class TodosComponent implements OnInit {
     { id: 3, content: 'Javascript', completed: false }
   ];
 
-  state = 'All';
+  currentState = 'All';
+  states: navItem[] = ['All', 'Active', 'Completed'];
 
   constructor() {}
 
@@ -57,32 +59,6 @@ export class TodosComponent implements OnInit {
     this.todos = this.todos.filter(item => {
       return !item.completed;
     });
-  }
-
-  allClick() {
-    this.state = 'All';
-  }
-
-  activeClick() {
-    this.state = 'Active';
-  }
-
-  completedClick() {
-    this.state = 'Completed';
-  }
-
-  get Todo() {
-    if (this.state === 'All') {
-      return this.todos;
-    } else if (this.state === 'Active') {
-      return this.todos.filter(item => {
-        return !item.completed;
-      });
-    } else if (this.state === 'Completed') {
-      return this.todos.filter(item => {
-        return item.completed;
-      });
-    }
   }
 
   get comItemCount() {

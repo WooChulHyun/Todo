@@ -1,0 +1,10 @@
+<ul class="nav">
+  <li
+    *ngFor="let state of states"
+    [class.active]="currentState === state"
+    (click)="changeState(state)"
+    #li
+  >
+    {{ state }}
+  </li>
+</ul>

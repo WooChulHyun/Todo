@@ -1,0 +1,19 @@
+<div class="footer">
+  <div class="complete-all">
+    <input
+      class="custom-checkbox"
+      type="checkbox"
+      id="ck-complete-all"
+      (click)="completeAll.emit(checkbox)"
+      #checkbox
+    />
+    <label for="ck-complete-all">Mark all as complete</label>
+  </div>
+  <div class="clear-completed">
+    <button class="btn" (click)="removeCompleted.emit()">
+      Clear completed (<span class="completed-todos">{{ comItemCount }}</span
+      >)
+    </button>
+    <strong class="active-todos">{{ notComItemCount }}</strong> items left
+  </div>
+</div>

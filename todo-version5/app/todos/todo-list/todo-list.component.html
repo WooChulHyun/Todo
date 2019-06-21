@@ -1,0 +1,17 @@
+<ul class="todos">
+  <li
+    id="myId"
+    class="todo-item"
+    *ngFor="let todo of todos | todoFilter: currentState"
+  >
+    <input
+      class="custom-checkbox"
+      type="checkbox"
+      id="ck-{{ todo.id }}"
+      [checked]="todo.completed"
+      (click)="toggle.emit(todo)"
+    />
+    <label for="ck-{{ todo.id }}">{{ todo.content }}</label>
+    <i class="remove-todo far fa-times-circle" (click)="remove.emit(todo)"></i>
+  </li>
+</ul>

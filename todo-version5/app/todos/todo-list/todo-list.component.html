@@ -1,6 +1,6 @@
 <ul class="todos">
   <li
-    id="myId"
+    id="{{ todo.id }}"
     class="todo-item"
     *ngFor="let todo of todos | todoFilter: currentState"
   >
@@ -9,9 +9,12 @@
       type="checkbox"
       id="ck-{{ todo.id }}"
       [checked]="todo.completed"
-      (click)="toggle.emit(todo)"
+      (click)="completeTodo.emit(todo)"
     />
     <label for="ck-{{ todo.id }}">{{ todo.content }}</label>
-    <i class="remove-todo far fa-times-circle" (click)="remove.emit(todo)"></i>
+    <i
+      class="remove-todo far fa-times-circle"
+      (click)="removeTodo.emit(todo)"
+    ></i>
   </li>
 </ul>

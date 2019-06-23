@@ -10,10 +10,12 @@
     <label for="ck-complete-all">Mark all as complete</label>
   </div>
   <div class="clear-completed">
-    <button class="btn" (click)="removeCompleted.emit()">
-      Clear completed (<span class="completed-todos">{{ comItemCount }}</span
+    <button class="btn" (click)="removeCompletedTodo.emit()">
+      Clear completed (<span class="completed-todos">{{
+        completetedTodosLen
+      }}</span
       >)
     </button>
-    <strong class="active-todos">{{ notComItemCount }}</strong> items left
+    <strong class="active-todos">{{ uncompletedTodoLen }}</strong> items left
   </div>
 </div>

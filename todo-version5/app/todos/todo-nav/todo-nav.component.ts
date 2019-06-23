@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { navItem } from '../../navItem.type';
+
+import { navItem } from '../../types/navItem.type';
 
 @Component({
   selector: 'app-todo-nav',
@@ -7,16 +8,16 @@ import { navItem } from '../../navItem.type';
   styleUrls: ['./todo-nav.component.css']
 })
 export class TodoNavComponent implements OnInit {
-  @Output() sendCurrentState = new EventEmitter();
-  currentState = 'All';
-  states: navItem[] = ['All', 'Active', 'Completed'];
+  @Output() changeState = new EventEmitter();
 
+  currentState: navItem = 'All';
+  states: navItem[] = ['All', 'Active', 'Completed'];
   constructor() {}
 
   ngOnInit() {}
 
-  changeState(state: string) {
+  changeCurrentState(state: navItem) {
     this.currentState = state;
-    this.sendCurrentState.emit(state);
+    this.changeState.emit(this.currentState);
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Todos } from '../todos';
+import { Todos } from '../interfaces/todos';
+import { navItem } from '../types/navItem.type';
 
 @Component({
   selector: 'app-todos',
@@ -35,7 +36,11 @@ export class TodosComponent implements OnInit {
     content.value = '';
   }
 
-  toggle(todo) {
+  changeState(state: navItem) {
+    this.state = state;
+  }
+
+  completeTodo(todo) {
     this.todos = this.todos.map(item => {
       return todo.id === item.id
         ? { ...item, completed: !item.completed }
@@ -43,29 +48,21 @@ export class TodosComponent implements OnInit {
     });
   }
 
-  remove(todo) {
+  removeTodo(todo) {
     this.todos = this.todos.filter(item => {
       return todo.id !== item.id;
     });
   }
 
-  completeAll(complete) {
+  completeAll(checkbox) {
     this.todos = this.todos.map(item => {
-      return { ...item, completed: complete.checked };
+      return { ...item, completed: checkbox.checked };
     });
   }
 
-  removeCompleted() {
+  removeCompletedTodo() {
     this.todos = this.todos.filter(item => {
       return !item.completed;
     });
-  }
-
-  receivedState(state) {
-    this.state = state;
-  }
-
-  receivedTodos(todos) {
-    this.todos = todos;
   }
 }

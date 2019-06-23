@@ -1,20 +1,20 @@
 <div class="container">
   <h1 class="title">Todos</h1>
-  <div class="ver">5.0</div>
+  <div class="ver">5 .0</div>
 
   <app-todo-form (addTodo)="addTodo($event)"></app-todo-form>
-  <app-todo-nav (sendCurrentState)="receivedState($event)"></app-todo-nav>
+  <app-todo-nav (changeState)="changeState($event)"></app-todo-nav>
   <app-todo-list
-    (toggle)="toggle($event)"
-    (remove)="remove($event)"
     [todos]="todos"
     [currentState]="state"
+    (completeTodo)="completeTodo($event)"
+    (removeTodo)="removeTodo($event)"
   ></app-todo-list>
   <app-todo-footer
     [todos]="todos"
     (completeAll)="completeAll($event)"
-    (removeCompleted)="removeCompleted()"
+    (removeCompletedTodo)="removeCompletedTodo()"
   ></app-todo-footer>
 </div>
 
-<pre>{{ todos | json }}</pre>
+<pre> {{ todos | json }}</pre>

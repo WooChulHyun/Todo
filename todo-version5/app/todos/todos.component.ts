@@ -28,7 +28,7 @@ export class TodosComponent implements OnInit {
       : 1;
   }
 
-  addTodo(content) {
+  addTodo(content: HTMLInputElement) {
     this.todos = [
       { id: this.generateID(), content: content.value, completed: false },
       ...this.todos

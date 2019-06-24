@@ -29,11 +29,13 @@ export class TodosComponent implements OnInit {
   }
 
   addTodo(content: HTMLInputElement) {
-    this.todos = [
-      { id: this.generateID(), content: content.value, completed: false },
-      ...this.todos
-    ];
-    content.value = '';
+    if (content.value.trim()) {
+      this.todos = [
+        { id: this.generateID(), content: content.value, completed: false },
+        ...this.todos
+      ];
+      content.value = '';
+    }
   }
 
   changeState(state: navItem) {

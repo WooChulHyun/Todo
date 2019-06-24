@@ -40,7 +40,7 @@ export class TodosComponent implements OnInit {
     this.state = state;
   }
 
-  completeTodo(todo) {
+  completeTodo(todo: Todos) {
     this.todos = this.todos.map(item => {
       return todo.id === item.id
         ? { ...item, completed: !item.completed }
@@ -48,13 +48,13 @@ export class TodosComponent implements OnInit {
     });
   }
 
-  removeTodo(todo) {
+  removeTodo(todo: Todos) {
     this.todos = this.todos.filter(item => {
       return todo.id !== item.id;
     });
   }
 
-  completeAll(checkbox) {
+  completeAll(checkbox: HTMLInputElement) {
     this.todos = this.todos.map(item => {
       return { ...item, completed: checkbox.checked };
     });
